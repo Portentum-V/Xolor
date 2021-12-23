@@ -43,6 +43,14 @@ def configure_logger(log_level: int):
 
     return logger
 
+def cleanup_logger(logger):
+    try:
+        logger.handlers.clear()
+        logger.shutdown()
+    except Exception as e:
+        print(f"{Xolor.ERROR} Error occured while clearing logger: {Xolor.END} {e}")
+    return
+
 def log_tester(log_level:int = 1):
     logger = configure_logger(log_level)
     print("Logger Critical:")
