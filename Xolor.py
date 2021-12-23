@@ -18,7 +18,7 @@ class Xolor:
         Select graphic rendtions BOLD, FRAME, and CIRCLE did not work on Windows 10.
         Additionally, SLOW and FAST blink were at the same speed
     """
-    # Foreground Colors
+    # Bright Foreground Colors
     GRAY    = '\033[90m'
     RED     = '\033[91m'
     GREEN   = '\033[92m'
@@ -27,6 +27,16 @@ class Xolor:
     MAGENTA = '\033[95m'
     CYAN    = '\033[96m'
     WHITE   = '\033[97m'
+    # Bright Background Colors
+    BG_GRAY    = '\033[100m'
+    BG_RED     = '\033[101m'
+    BG_GREEN   = '\033[102m'
+    BG_YELLOW  = '\033[103m'
+    BG_BLUE    = '\033[104m'
+    BG_MAGENTA = '\033[105m'
+    BG_CYAN    = '\033[106m'
+    BG_WHITE   = '\033[107m'
+
     # Select Graphic Renditions
     END     = '\033[0m' # Reset/Normal; default attributes
     BOLD    = '\033[1m'
@@ -54,15 +64,6 @@ class Xolor:
     NO_FRAME_OR_CIRCLE  = '\033[54m'
     NO_OVER             = '\033[55m'
 
-    # Formating
-    CRIT  =  MAGENTA + '[*] '
-    ERROR = RED      + '[!] '
-    WARN  = YELLOW   + '[?] '
-    INFO  = WHITE    + '[~] '
-    DEBUG = GRAY     + '[-] '
-    SUCC  = CYAN     + '[+] '
-    NICE  = GREEN    + '[$] '
-
     # Normal FG ints; +10 for BG, +70 for Bright, +80 for BG Bright
     black   = 30
     red     = 31
@@ -72,6 +73,15 @@ class Xolor:
     magenta = 35
     cyan    = 36
     white   = 37
+
+    # Formating
+    CRIT  =  MAGENTA + '[*] '
+    ERROR = RED      + '[!] '
+    WARN  = YELLOW   + '[?] '
+    INFO  = WHITE    + '[~] '
+    DEBUG = GRAY     + '[-] '
+    SUCC  = CYAN     + '[+] '
+    NICE  = GREEN    + '[$] '
 
     # Lazy function
     def color_str(self, c: str, s: str):
