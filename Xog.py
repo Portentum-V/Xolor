@@ -37,7 +37,7 @@ def configure_logger(log_level: int):
     
     ch = logging.StreamHandler()
     ch.setLevel(log_level)
-    ch.setFormatter(log_formatter())
+    ch.setFormatter(Xog())
 
     logger.addHandler(ch)
 

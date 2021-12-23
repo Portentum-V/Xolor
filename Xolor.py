@@ -1,7 +1,6 @@
 """
 Xolor.py
 """
-import os
 
 class Xolor:
     """
