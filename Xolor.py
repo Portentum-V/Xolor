@@ -75,7 +75,7 @@ class Xolor:
     white   = 37
 
     # Formating
-    CRIT  =  MAGENTA + '[*] '
+    CRIT  = MAGENTA  + '[*] '
     ERROR = RED      + '[!] '
     WARN  = YELLOW   + '[?] '
     INFO  = WHITE    + '[~] '
