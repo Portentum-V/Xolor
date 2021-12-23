@@ -18,7 +18,7 @@ class Xog(logging.Formatter):
 
     def format(self, record):
         if record.levelno == logging.DEBUG:
-            self._style._fmt = f"{self.xolor.DEBUG}%(module)s %(lineno)d: %(message)s {self.xolor.END}"
+            self._style._fmt = f"{self.xolor.DEBUG}%(name)s-%(lineno)d| %(message)s {self.xolor.END}"
         else:
             color = {
                 logging.CRITICAL: self.xolor.CRIT,
@@ -26,7 +26,7 @@ class Xog(logging.Formatter):
                 logging.WARN: self.xolor.WARN,
                 logging.INFO: self.xolor.INFO
             }.get(record.levelno, self.xolor.WEIRD)
-            self._style._fmt = f"{color}%(message)s{self.xolor.END}"
+            self._style._fmt = f"{color}%(name)s| %(message)s{self.xolor.END}"
         return super().format(record)
 
 def configure_logger(log_level: int):
@@ -46,9 +46,8 @@ def configure_logger(log_level: int):
 def cleanup_logger(logger):
     try:
         logger.handlers.clear()
-        logger.shutdown()
     except Exception as e:
-        print(f"{Xolor.ERROR} Error occured while clearing logger: {Xolor.END} {e}")
+        print(f"{Xolor.ERROR}{type(e).__name__} occured while clearing logger:{Xolor.END} {e}")
     return
 
 def log_tester(log_level:int = 1):
