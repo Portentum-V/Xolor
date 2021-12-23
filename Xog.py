@@ -14,7 +14,7 @@ class Xog:
     xolor = Xolor()
 
     def __init__(self):
-        super().__init__(fmt="%(levelno)d: %(message)s")
+        super().__init__()
 
     def format(self, record):
         if record.levelno == logging.DEBUG:
