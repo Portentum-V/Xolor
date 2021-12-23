@@ -81,6 +81,7 @@ class Xolor:
     DEBUG = GRAY     + '[-] '
     SUCC  = CYAN     + '[+] '
     NICE  = GREEN    + '[$] '
+    WEIRD = BLUE     + '[ ]'
 
     # Lazy function
     def color_str(self, c: str, s: str):

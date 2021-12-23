@@ -6,7 +6,7 @@ import inspect
 
 from Xolor.Xolor import Xolor
 
-class Xog:
+class Xog(logging.Formatter):
     """
     Xog:
         A log formatter for the logging module
@@ -14,7 +14,7 @@ class Xog:
     xolor = Xolor()
 
     def __init__(self):
-        super().__init__()
+        super().__init__(fmt="%(levelno)d: %(message)s")
 
     def format(self, record):
         if record.levelno == logging.DEBUG:
@@ -25,7 +25,7 @@ class Xog:
                 logging.ERROR: self.xolor.ERROR,
                 logging.WARN: self.xolor.WARN,
                 logging.INFO: self.xolor.INFO
-            }.get(record.levelno, 0)
+            }.get(record.levelno, self.xolor.WEIRD)
             self._style._fmt = f"{color}%(message)s{self.xolor.END}"
         return super().format(record)
 
