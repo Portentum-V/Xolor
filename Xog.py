@@ -11,6 +11,7 @@ class Xog(logging.Formatter):
     """
     Xog:
         A log formatter for the logging module
+        Uses Xolor to add some spice
     """
     xolor = Xolor()
 
