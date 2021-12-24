@@ -74,14 +74,14 @@ class Xolor:
     white   = 37
 
     # Formating
-    CRIT  = MAGENTA  + '[*] '
-    ERROR = RED      + '[!] '
-    WARN  = YELLOW   + '[?] '
-    INFO  = WHITE    + '[~] '
-    DEBUG = GRAY     + '[-] '
-    SUCC  = CYAN     + '[+] '
-    NICE  = GREEN    + '[$] '
-    WEIRD = BLUE     + '[ ]'
+    CRIT  = MAGENTA + SLOW + '[*]'
+    ERROR = RED            + '[!]'
+    WARN  = YELLOW         + '[?]'
+    INFO  = WHITE + FAINT  + '[~]'
+    DEBUG = GRAY           + '[-]'
+    SUCC  = CYAN           + '[+]'
+    NICE  = GREEN          + '[$]'
+    WEIRD = BLUE           + '[ ]'
 
     # Lazy function
     def color_str(self, c: str, s: str):
