@@ -26,7 +26,7 @@ class Xog(logging.Formatter):
             logging.INFO: self.xolor.INFO,
             logging.DEBUG: self.xolor.DEBUG,
         }.get(record.levelno, self.xolor.WEIRD)
-        self._style._fmt = f"{color}%(asctime)s| %(name)s: %(lineno)d| %(message)s{self.xolor.END}"
+        self._style._fmt = f"{color} %(asctime)s| %(name)s: %(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
 def configure_logger(log_level: int = 10, hdlr = sys.stdout):
