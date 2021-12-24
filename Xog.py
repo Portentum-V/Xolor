@@ -3,6 +3,7 @@ Xog.py
 """
 import logging
 import inspect 
+import sys
 
 from Xolor.Xolor import Xolor
 
@@ -36,7 +37,7 @@ def configure_logger(log_level: int):
     logger = logging.getLogger(name)
     logger.setLevel(log_level)
     
-    ch = logging.StreamHandler()
+    ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(log_level)
     ch.setFormatter(Xog())
 
