@@ -26,13 +26,27 @@ class Xog(logging.Formatter):
             logging.INFO: self.xolor.INFO,
             logging.DEBUG: self.xolor.DEBUG,
         }.get(record.levelno, self.xolor.WEIRD)
-        self._style._fmt = f"{color} %(asctime)s| %(name)s: %(lineno)d| %(message)s{self.xolor.END}"
+        self._style._fmt = f"{color} %(asctime)s| %(funcName)s: %(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
-def configure_logger(log_level: int = 10, stack_depth: int = 1, hdlr = sys.stdout):
-    name = inspect.stack()[stack_depth][3] # Get str name of caller
+def log(func):
+    def wrapper(*args, **kwargs):
+        args_repr = [repr(a) for a in args]
+        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+        params = signature = ", ".join(args_repr + kwargs_repr)
+        logger.debug(f"{func.__name__} called with args {params}")
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as e:
+            logger.exception(f"{type(e).__name__}: {e}")
+            raise e
+    return wrapper
+
+def configure_logger(log_level: int = 10, log_name: str = "LOG", hdlr = sys.stdout):
+    # name = inspect.stack()[stack_depth][3] # Get str name of caller
     
-    logger = logging.getLogger(name)
+    logger = logging.getLogger(log_name)
     logger.setLevel(log_level)
     
     ch = logging.StreamHandler(sys.stdout)
