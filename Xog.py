@@ -18,20 +18,17 @@ class Xog(logging.Formatter):
         super().__init__(fmt="%(levelno)d: %(message)s")
 
     def format(self, record):
-        if record.levelno == logging.DEBUG:
-            self._style._fmt = f"{self.xolor.DEBUG}%(name)s: %(lineno)d| %(message)s {self.xolor.END}"
-        else:
-            color = {
-                logging.CRITICAL: self.xolor.CRIT,
-                logging.ERROR: self.xolor.ERROR,
-                logging.WARN: self.xolor.WARN,
-                logging.INFO: self.xolor.INFO,
-                logging.DEBUG: self.xolor.DEBUG,
-            }.get(record.levelno, self.xolor.WEIRD)
-            self._style._fmt = f"{color}%(name)s: %(lineno)d| %(message)s{self.xolor.END}"
+        color = {
+            logging.CRITICAL: self.xolor.CRIT,
+            logging.ERROR: self.xolor.ERROR,
+            logging.WARN: self.xolor.WARN,
+            logging.INFO: self.xolor.INFO,
+            logging.DEBUG: self.xolor.DEBUG,
+        }.get(record.levelno, self.xolor.WEIRD)
+        self._style._fmt = f"{color}%(asctime)s| %(name)s: %(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
-def configure_logger(log_level: int):
+def configure_logger(log_level: int = 10, hdlr = sys.stdout):
     name = inspect.stack()[1][3] # Get str name of caller
     
     logger = logging.getLogger(name)
