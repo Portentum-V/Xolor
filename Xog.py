@@ -18,15 +18,16 @@ class Xog(logging.Formatter):
 
     def format(self, record):
         if record.levelno == logging.DEBUG:
-            self._style._fmt = f"{self.xolor.DEBUG}%(name)s-%(lineno)d| %(message)s {self.xolor.END}"
+            self._style._fmt = f"{self.xolor.DEBUG}%(name)s: %(lineno)d| %(message)s {self.xolor.END}"
         else:
             color = {
                 logging.CRITICAL: self.xolor.CRIT,
                 logging.ERROR: self.xolor.ERROR,
                 logging.WARN: self.xolor.WARN,
-                logging.INFO: self.xolor.INFO
+                logging.INFO: self.xolor.INFO,
+                logging.DEBUG: self.xolor.DEBUG,
             }.get(record.levelno, self.xolor.WEIRD)
-            self._style._fmt = f"{color}%(name)s| %(message)s{self.xolor.END}"
+            self._style._fmt = f"{color}%(name)s: %(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
 def configure_logger(log_level: int):
@@ -56,6 +57,8 @@ def log_tester(log_level:int = 1):
     logger.critical("CRIT HIT!")
     print("Logger Error:")
     logger.error("ERROR ERROR ERROR")
+    print("Logger Exception:")
+    logger.exception("An exception occured")
     print("Logger Warning:")
     logger.warning("Warning message here")
     print("Logger Info:")
