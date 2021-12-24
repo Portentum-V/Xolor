@@ -29,8 +29,8 @@ class Xog(logging.Formatter):
         self._style._fmt = f"{color} %(asctime)s| %(name)s: %(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
-def configure_logger(log_level: int = 10, hdlr = sys.stdout):
-    name = inspect.stack()[1][3] # Get str name of caller
+def configure_logger(log_level: int = 10, stack_depth: int = 1, hdlr = sys.stdout):
+    name = inspect.stack()[stack_depth][3] # Get str name of caller
     
     logger = logging.getLogger(name)
     logger.setLevel(log_level)
