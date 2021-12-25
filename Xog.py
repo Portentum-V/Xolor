@@ -42,7 +42,7 @@ class XogFormat(logging.Formatter):
     xolor = Xolor()
 
     def __init__(self):
-        super().__init__(fmt="%(asctime)s| %(funcName)s: %(lineno)d| %(message)s")
+        super().__init__(fmt="%(asctime)s| %(funcName)s: %(lineno)d| %(message).64s")
         try:
             addLoggingLevel("VERBOSE", 5)
         except AttributeError:
@@ -57,7 +57,7 @@ class XogFormat(logging.Formatter):
             logging.DEBUG: self.xolor.DEBUG,
             logging.VERBOSE: self.xolor.VERBOSE
         }.get(record.levelno, self.xolor.WEIRD)
-        self._style._fmt = f"{color} %(asctime)s| %(funcName)s: %(lineno)d| %(message)s{self.xolor.END}"
+        self._style._fmt = f"{color} %(asctime)s| %(funcName)s: %(lineno)d| %(message).64s{self.xolor.END}"
         return super().format(record)
 
 class Xog():
@@ -108,8 +108,7 @@ class Xog():
             self.logger.verbose(f'{func.__name__} called with{"out" if not params else ""} args {params}')
             try:
                 result = func(*args, **kwargs)
-                result_str = f'{result:.32s}' if result else "None"
-                self.logger.verbose(f'{func.__name__} returned {result_str}')
+                self.logger.verbose(f'{func.__name__} returned {result}')
                 return result
             except Exception as e:
                 self.logger.exception(f"{type(e).__name__}: {e}")
