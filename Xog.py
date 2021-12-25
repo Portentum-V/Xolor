@@ -43,7 +43,10 @@ class XogFormat(logging.Formatter):
 
     def __init__(self):
         super().__init__(fmt="%(asctime)s| %(funcName)s: %(lineno)d| %(message)s")
-        addLoggingLevel("VERBOSE", 5)
+        try:
+            addLoggingLevel("VERBOSE", 5)
+        except AttributeError:
+            pass
 
     def format(self, record):
         color = {
