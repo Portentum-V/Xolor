@@ -108,7 +108,7 @@ class Xog():
             self.logger.verbose(f'{func.__name__} called with{"out" if not params else ""} args {params}')
             try:
                 result = func(*args, **kwargs)
-                self.logger.verbose(f"{func.__name__} returned {result}")
+                self.logger.verbose(f"{func.__name__} returned {result!s:32}")
                 return result
             except Exception as e:
                 self.logger.exception(f"{type(e).__name__}: {e}")
