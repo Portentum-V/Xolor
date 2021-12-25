@@ -57,7 +57,10 @@ class XogFormat(logging.Formatter):
             logging.DEBUG: self.xolor.DEBUG,
             logging.VERBOSE: self.xolor.VERBOSE
         }.get(record.levelno, self.xolor.WEIRD)
-        self._style._fmt = f"{color} %(asctime)s| %(filename)s-%(funcName)s:%(lineno)d| %(message).640s{self.xolor.END}"
+        if record.levelno == logging.VERBOSE:
+            self._style._fmt = f"{color}%(asctime)s| %(message)s{self.xolor.END}"
+        else:
+            self._style._fmt = f"{color}%(asctime)s| %(filename)s-%(funcName)s:%(lineno)d| %(message)s{self.xolor.END}"
         return super().format(record)
 
 class Xog():
