@@ -7,7 +7,7 @@ A quick and dirty class for adding color to the commandline.
 
 *I make no guarantees that this will work for you*
 
-### Xolor Example
+### Xolor Colors
 
 ![color_test](https://github.com/Portentum-V/Xolor/blob/main/color_test.png)
 
