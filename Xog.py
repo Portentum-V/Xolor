@@ -65,7 +65,7 @@ class Xog():
     Xog:
         A log decorator for doing log things!
     """
-    log_level = 10
+    log_level = 5
 
     def __init__(self, log_name: str = __name__, log_level: int = 5, stream = sys.stdout):
         self.log_name = log_name
@@ -74,19 +74,22 @@ class Xog():
         self.logger = logging.getLogger(log_name)
 
         self.changeLevel(log_level)
-        self.addHandler(stream)
+        self.addHandler(stream, self.log_level)
 
-    def changeLevel(self, log_level: int = 10):
+    def changeLevel(self, log_level: int = 5):
         self.logger.setLevel(log_level)
         for hdlr in self.logger.handlers:
             hdlr.setLevel(log_level)
         
-    def addHandler(self, stream):
+    def addHandler(self, stream, log_level: int = 5):
         ch = logging.StreamHandler(stream) # console handler, logging default sys.stderr, func default sys.stdout
-        ch.setLevel(self.log_level)
+        ch.setLevel(log_level)
         ch.setFormatter(XogFormat())
         self.logger.addHandler(ch)
         return ch
+
+    def changeHandlerLevel(self, hdlr, log_level: int = 5):
+        hdlr.setLevel(log_level)
 
     def removeHandler(self, hdlr):
         self.logger.handlers.remove(hdlr)
