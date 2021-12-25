@@ -1,6 +1,9 @@
 # Xolor!
 
-A quick and dirty class for adding color to the commandline
+A quick and dirty class for adding color to the commandline.
+
++ The `Xolor` class provides select graphic renditions which are supported by most terminals.
++ The `Xog` class provides a decorator for logging functions.
 
 *I make no guarantees that this will work for you*
 
