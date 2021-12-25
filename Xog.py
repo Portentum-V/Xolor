@@ -74,14 +74,14 @@ class Xog():
         self.logger = logging.getLogger(log_name)
 
         self.changeLevel(log_level)
-        self.addHandler(stream, self.log_level)
+        self.addStreamHandler(stream, self.log_level)
 
     def changeLevel(self, log_level: int = 5):
         self.logger.setLevel(log_level)
         for hdlr in self.logger.handlers:
             hdlr.setLevel(log_level)
         
-    def addHandler(self, stream, log_level: int = 5):
+    def addStreamHandler(self, stream, log_level: int = 5):
         ch = logging.StreamHandler(stream) # console handler, logging default sys.stderr, func default sys.stdout
         ch.setLevel(log_level)
         ch.setFormatter(XogFormat())
@@ -115,44 +115,45 @@ class Xog():
                 raise e
         return log_wrapper
 
-xog = Xog(log_level = 5)
-@xog.log
-def dec_log_tester():
-    logger = xog.getLogger()
-    print("Logger Critical:")
-    logger.critical("CRIT HIT!")
-    print("Logger Error:")
-    logger.error("ERROR ERROR ERROR")
-    print("Logger Exception:")
-    logger.exception("An exception occured")
-    print("Logger Warning:")
-    logger.warning("Warning message here")
-    print("Logger Info:")
-    logger.info("Mad information status!")
-    print("Logger Debug:")
-    logger.debug("Very specific detail! Nice nice nice")
-    print("Logger Verbose:")
-    logger.verbose("OH GOD TO MUCH")
-    return
+class tests():
+    xog = Xog(log_level = 5)
+    @xog.log
+    def dec(self):
+        logger = self.xog.getLogger()
+        print("Logger Critical:")
+        logger.critical("CRIT HIT!")
+        print("Logger Error:")
+        logger.error("ERROR ERROR ERROR")
+        print("Logger Exception:")
+        logger.exception("An exception occured")
+        print("Logger Warning:")
+        logger.warning("Warning message here")
+        print("Logger Info:")
+        logger.info("Mad information status!")
+        print("Logger Debug:")
+        logger.debug("Very specific detail! Nice nice nice")
+        print("Logger Verbose:")
+        logger.verbose("OH GOD TO MUCH")
+        return
 
-def raw_log_tester(level:int = 1):
-    logger = xog.getLogger()
-    print("Logger Critical:")
-    logger.critical("CRIT HIT!")
-    print("Logger Error:")
-    logger.error("ERROR ERROR ERROR")
-    print("Logger Exception:")
-    logger.exception("An exception occured")
-    print("Logger Warning:")
-    logger.warning("Warning message here")
-    print("Logger Info:")
-    logger.info("Mad information status!")
-    print("Logger Debug:")
-    logger.debug("Very specific detail! Nice nice nice")
-    print("Logger Verbose:")
-    logger.verbose("OH GOD TO MUCH")
-    return
+    def raw(self):
+        logger = self.xog.getLogger()
+        print("Logger Critical:")
+        logger.critical("CRIT HIT!")
+        print("Logger Error:")
+        logger.error("ERROR ERROR ERROR")
+        print("Logger Exception:")
+        logger.exception("An exception occured")
+        print("Logger Warning:")
+        logger.warning("Warning message here")
+        print("Logger Info:")
+        logger.info("Mad information status!")
+        print("Logger Debug:")
+        logger.debug("Very specific detail! Nice nice nice")
+        print("Logger Verbose:")
+        logger.verbose("OH GOD TO MUCH")
+        return
 
-def level_tester():
-    for level in range(0,50):
-        print(logging.getLevelName(level))
+    def lvl(self):
+        for level in range(0,50):
+            print(logging.getLevelName(level))
