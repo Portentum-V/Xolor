@@ -7,7 +7,12 @@ A quick and dirty class for adding color to the commandline.
 
 *I make no guarantees that this will work for you*
 
-### Example
+### Xolor Example
+
+![color_test](https://github.com/Portentum-V/Xolor/blob/main/color_test.png)
+
+### Xog Example
+
 ```
 from Xolor.Xog import Xog
 
@@ -33,3 +38,5 @@ def dec():
     logger.verbose("OH GOD TO MUCH")
     return
 ```
+
+![log_test](https://github.com/Portentum-V/Xolor/blob/main/log_test.png)
