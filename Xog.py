@@ -105,10 +105,10 @@ class Xog():
             args_repr = [repr(a) for a in args]
             kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
             params = ", ".join(args_repr + kwargs_repr)
-            self.logger.verbose(f"{func.__name__} called with args {params}")
+            self.logger.verbose(f'{func.__name__} called with{"out" if not params else ""} args {params}')
             try:
                 result = func(*args, **kwargs)
-                self.logger.verbose(f"{func.__name__} returned with {result}")
+                self.logger.verbose(f"{func.__name__} returned {result}")
                 return result
             except Exception as e:
                 self.logger.exception(f"{type(e).__name__}: {e}")
