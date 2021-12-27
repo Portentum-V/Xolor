@@ -2,6 +2,7 @@
 Xog_tests.py
 """
 from Xog import Xog
+import logging
 
 test_xog = Xog(log_level = 5)
 @test_xog.log

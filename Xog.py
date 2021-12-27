@@ -6,10 +6,7 @@ import inspect
 import sys
 
 # lazy for testing import
-try:
-    from Xolor.Xolor import Xolor
-except ModuleNotFoundError:
-    from Xolor import Xolor
+from Xolor import Xolor
 
 # Source: https://newbedev.com/how-to-add-a-custom-loglevel-to-python-s-logging-facility
 def addLoggingLevel(level_str: str, level_int: int, method_str: str = None):
