@@ -38,10 +38,16 @@ class XogFormat(logging.Formatter):
     """
     xolor = Xolor()
 
-    def __init__(self):
+    def __init__(self, verbose_level: int = 5, print_level: int = 35):
         super().__init__(fmt="%(asctime)s| %(funcName)s: %(lineno)d| %(message).640s")
+        # Add two print levels, verbose for LOTS of message, print for anything
         try:
-            addLoggingLevel("VERBOSE", 5)
+            addLoggingLevel("VERBOSE", verbose_level)
+        except AttributeError:
+            pass
+
+        try:
+            addLoggingLevel("PRINT", print_level)
         except AttributeError:
             pass
 
@@ -49,12 +55,15 @@ class XogFormat(logging.Formatter):
         color = {
             logging.CRITICAL: self.xolor.CRIT,
             logging.ERROR: self.xolor.ERROR,
+            logging.PRINT: "",
             logging.WARN: self.xolor.WARN,
             logging.INFO: self.xolor.INFO,
             logging.DEBUG: self.xolor.DEBUG,
             logging.VERBOSE: self.xolor.VERBOSE
         }.get(record.levelno, self.xolor.WEIRD)
-        if record.levelno == logging.VERBOSE:
+        if record.levelno == logging.PRINT:
+            self._style._fmt = f"%(message)s{self.xolor.END}"
+        elif record.levelno == logging.VERBOSE:
             self._style._fmt = f"{color} %(asctime)s| %(message)s{self.xolor.END}"
         else:
             self._style._fmt = f"{color} %(asctime)s| %(filename)s-%(funcName)s:%(lineno)d| %(message)s{self.xolor.END}"
